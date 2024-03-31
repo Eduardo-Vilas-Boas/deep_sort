@@ -50,6 +50,10 @@ def _cosine_distance(a, b, data_is_normalized=False):
     if not data_is_normalized:
         a = np.asarray(a) / np.linalg.norm(a, axis=1, keepdims=True)
         b = np.asarray(b) / np.linalg.norm(b, axis=1, keepdims=True)
+
+    a = np.squeeze(a)
+    b = np.squeeze(b)
+
     return 1.0 - np.dot(a, b.T)
 
 

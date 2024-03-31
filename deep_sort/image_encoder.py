@@ -38,17 +38,6 @@ class ImageEncoder(object):
     def update_model(cls, new_model_repo, new_model_name, new_weights):
         cls._instance.load_model(new_model_repo, new_model_name, new_weights)
 
-    def __call__(self, image_patches, batch_size):
-        if len(image_patches) > 0:
-            image_patches = (
-                torch.from_numpy(image_patches).float().to(self.device)
-            )
-            features = []
-            with torch.no_grad():
-                for i in range(0, len(image_patches), batch_size):
-                    batch = image_patches[i : i + batch_size]
-                    feature = self.appearance_descriptors_model(batch)
-                    features.append(feature)
-            return torch.cat(features).cpu().numpy()
-        else:
-            return np.zeros((0, *self.image_shape))
+    def __call__(self, image):
+        image_tensor = torch.from_numpy(image).float().to(self.device)
+        return self.appearance_descriptors_model(image_tensor)

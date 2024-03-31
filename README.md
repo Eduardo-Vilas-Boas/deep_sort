@@ -51,11 +51,13 @@ the MOT16 benchmark data is in `./MOT16`:
 
 ```
 python deep_sort_app.py \
-    --sequence_dir=./MOT16/test/MOT16-06 \
-    --detection_file=./resources/detections/MOT16_POI_test/MOT16-06.npy \
+    --sequence=resources/videos/car_traffic.mp4 \
+    --model-detection="resources/networks/yolov8s.pt" \
+    --model-repo="pytorch/vision:v0.17.0" \
+    --model-name="mobilenet_v3_small" \
+    --output_file=./resources/detections/output.npy \
     --min_confidence=0.3 \
-    --nn_budget=100 \
-    --display=True
+    --nn_budget=100
 ```
 
 Check `python deep_sort_app.py -h` for an overview of available options.

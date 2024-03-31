@@ -89,5 +89,4 @@ ENV/
 .ropeproject
 MOT16/
 MOT16.zip
-resources/detections/
-resources/networks/
+resources/
